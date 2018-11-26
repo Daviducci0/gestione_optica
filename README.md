@@ -8,11 +8,11 @@ It can be used to manage:
 * Doctors - contains information on optometrists who have issued a doctor's prescription presented by clients
 
 ### Screenshots
-<img src="/images/okanagraficaOptica.png" alt="Gestione Optica Anagrafica" width="324" height="576" style="max-width:100%;">
+<img src="/images/okanagraficaOptica.png" alt="Gestione Optica Anagrafica" style="max-width:100%;">
 
-<img src="/images/okcontattologiaOptica.png" alt="Gestione Optica Contattologia" width="324" height="576" style="max-width:100%;">
+<img src="/images/okcontattologiaOptica.png" alt="Gestione Optica Contattologia" style="max-width:100%;">
 
-<img src="/images/oklenti da vista.png" alt="Gestione Optica Vista" width="324" height="576" style="max-width:100%;">
+<img src="/images/oklenti da vista.png" alt="Gestione Optica Vista" style="max-width:100%;">
 
-<img src="/images/okmediciOptica.png" alt="Gestione Optica Medici" width="324" height="576" style="max-width:100%;">
+<img src="/images/okmediciOptica.png" alt="Gestione Optica Medici" style="max-width:100%;">
 
