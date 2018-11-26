@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="client_ottico_form_view">
+            <field name="name">client.ottico</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="replace">
+                    <field name="birth" string="Data di Nascita"/>
+                    <field name="cod_fisc" string="Codice Fiscale/P.IVA"/>
+                </xpath>
+                <notebook position="inside">
+                    <page string="Lenti da vista" attrs="{'invisible': [('customer', '=', False)]}">
+                        <group>
+                            <group>
+                                <field name="oculista"/>
+                                <field name="data_pre"/>
+                                <field name="retail_price"/>
+                            </group>
+                            <group>
+                                <field name="metrica"/>
+                                <field name="dav"/>
+                            </group>
+                            <group string="Vicino SX">
+                                <field name="sf_sx_v"/>
+                                <field name="cil_sx_v"/>
+                                <field name="ax_sx_v"/>
+                            </group>
+                            <group string="Vicino DX ">
+                                <field name="sf_dx_v"/>
+                                <field name="cil_dx_v"/>
+                                <field name="ax_dx_v"/>
+                            </group>
+                            <group string="Lontano SX">
+                                <field name="sf_sx_l"/>
+                                <field name="cil_sx_l"/>
+                                <field name="ax_sx_l"/>
+                            </group>
+                            <group string="Lontano DX">
+                                <field name="sf_dx_l"/>
+                                <field name="cil_dx_l"/>
+                                <field name="ax_dx_l"/>
+                            </group>
+                            <group string="Occhiale Vicino">
+                                <field name="lente_v"/>
+                                <field name="diam_v"/>
+                                <field name="mont_v"/>
+                            </group>
+                            <group string="Occhiale Lontano">
+                                <field name="lente_l"/>
+                                <field name="diam_l"/>
+                                <field name="mont_l"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Lenti a contatto" attrs="{'invisible': [('customer', '=', False)]}">
+                        <group>
+                            <group>
+                                <field name="oculista"/>
+                                <field name="data_pre"/>
+                            </group>
+                            <group>
+
+                            </group>
+                            <group string="Occhio Sinistro">
+                                <field name="sf_sx"/>
+                                <field name="cil_sx"/>
+                                <field name="ax_sx"/>
+                            </group>
+                            <group string="Occhio Destro">
+                                <field name="sf_dx"/>
+                                <field name="cil_dx"/>
+                                <field name="ax_dx"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+
+     <record model="ir.ui.view" id="client_search_view">
+            <field name="name">client.search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="cod_fisc"/>
+                    <field name="oculista"/>
+                </search>
+            </field>
+        </record>
+
+    <record model="ir.actions.act_window" id="client_list_action">
+            <field name="name">Clienti</field>
+            <field name="res_model">res.partner</field>
+            <field name="domain">[('customer','=',True)]</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea il primo Cliente
+                </p>
+            </field>
+    </record>
+
+    <record model="ir.ui.view" id="session_form_view">
+        <field name="name">medico.form</field>
+        <field name="model">ottica.medico</field>
+        <field name="arch" type="xml">
+            <form string="Medico Form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <label for="street_s" string="Indirizzo Studio"/>
+                        <div class="o_address_format">
+                            <field name="street_s" placeholder="Street..." class="o_address_street"/>
+                            <field name="city_s" placeholder="City" class="o_address_city"/>
+                            <field name="zip_s" placeholder="ZIP" class="o_address_zip"/>
+                        </div>
+                    </group>
+                    <group>
+                        <label for="street" string="Ospedale"/>
+                        <div class="o_address_format">
+                            <field name="name_hospital" placeholder="Nome Ospedale" class="o_address_street"/>
+                            <field name="street" placeholder="Street..." class="o_address_street"/>
+                            <field name="city" placeholder="City" class="o_address_city"/>
+                            <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                        </div>
+                    </group>
+                     <notebook>
+                    <page string="Lista Pazienti">
+                        <field name="paziente"/>
+                    </page>
+                </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="doctor_list_action">
+            <field name="name">Medici</field>
+            <field name="res_model">ottica.medico</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea il primo Medico
+                </p>
+            </field>
+    </record>
+
+    <!-- top level menu: no parent -->
+        <menuitem id="main_ottica_menu" name="Gestione Optica"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="ottica_menu" name="Gestione Optica"
+                  parent="main_ottica_menu"/>
+        <!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+        <menuitem id="client_menu" name="Clienti" parent="ottica_menu"
+                  action="client_list_action"/>
+        <menuitem id="doctor_menu" name="Medici" parent="ottica_menu"
+                  action="doctor_list_action"/>
+        <!-- Full id location:
+             action="openacademy.course_list_action"
+             It is not required when it is the same module -->
+</odoo>
